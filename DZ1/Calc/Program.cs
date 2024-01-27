@@ -1,17 +1,26 @@
 ﻿using System.Security.Cryptography;
 
 
-    double x;
-    double y;
-    double r;
-    char z;
+double x, y, r;
+char z;
 
 while (true)
 {
-    Console.WriteLine("Введите число 1");
-    x = double.Parse(Console.ReadLine());
-    y = 0;
-
+    while (true)
+    {
+        Console.WriteLine("Введите число 1");
+    
+        if (!Double.TryParse(Console.ReadLine(), out x))
+        {
+            Console.WriteLine("Ошибка ввода, введите чиcло!"); 
+        }
+        else
+        {
+            break;
+        }
+    }
+        y = 0;
+    
     while (true)
     {
         while (true)
@@ -30,18 +39,32 @@ while (true)
                 }
         }
         
-            if (z != '=')
+            if (z != '=' & z != '^')
             {
-                Console.WriteLine("Введите число 2");
-                y = double.Parse(Console.ReadLine());
+                while (true)
+                {
+                    Console.WriteLine("Введите число 2");
+                    if (!Double.TryParse(Console.ReadLine(), out y))
+                    {
+                        Console.WriteLine("Ошибка ввода, введите чиcло!");
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
             }
-        
+            
+
             if (z == '/')
             {
-                x = x / y;
                 if (y == 0)
                 {
-                   Console.WriteLine("Деление на 0 невозможно");
+                    Console.WriteLine("Деление на 0 невозможно");
+                }
+                else
+                {
+                    x = x / y;
                 }
             }
             
@@ -56,9 +79,6 @@ while (true)
                     case '*':
                         x = x * y;
                         break;
-                    case '/':
-                        x = x / y;
-                        break;
                     case '%':
                         x = x / 100 * y;
                         break;
@@ -69,11 +89,10 @@ while (true)
                         }
                         else
                         {
-                            Console.WriteLine($"Из отрицательного числа {x} нельзя извлечь корень!");
-                            continue;
+                            Console.WriteLine($"Из отрицательного числа нельзя извлечь корень!");
+                            break;
                         }
                         break;
-
                 }
                 if (z == '=')
                 {
@@ -82,19 +101,18 @@ while (true)
                     break;
                 }
     }
-    
 
-        Console.WriteLine("Введите е, чтобы покинуть программу");
-        string enteredText = Console.ReadLine();
-        switch (enteredText)
-        {
-            case "е":
-                Console.WriteLine("ВЫХОД");
-                return;
 
-            default:
-                Console.WriteLine("ПРОДОЛЖАЕМ");
-                break;
-        }
-    
+    Console.WriteLine("Введите e, чтобы покинуть программу");
+    string enteredText = Console.ReadLine();
+    switch (enteredText)
+    {
+        case "e":
+            Console.WriteLine("Выход");
+            return;
+
+        default:
+            Console.WriteLine("Продолжаем");
+            break;
+    }
 }
